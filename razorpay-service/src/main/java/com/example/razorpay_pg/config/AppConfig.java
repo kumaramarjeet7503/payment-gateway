@@ -9,8 +9,10 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "app")
 @Getter
 @Setter
-public class AppPropertyConfig {
-
+public class AppConfig {
     private String message ;
-
+    private String razorpayUrl ;
+    private String razorpayUsername ;
+    private String razorpayPassword ;
+    private String callbackUrl ;
 }

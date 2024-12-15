@@ -1,24 +1,43 @@
 package com.example.razorpay_pg.controller;
 
-import com.example.razorpay_pg.resource.BaseInteraction;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.example.razorpay_pg.dto.APICommonRequest;
+import com.example.razorpay_pg.service.RazorPayService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-public class RazorPayController implements BaseInteraction {
+public class RazorPayController {
 
-    @Override
+    private final RazorPayService razorPayService;
+
+    RazorPayController(RazorPayService razorPayService) {
+        this.razorPayService = razorPayService;
+    }
+
+    @GetMapping(value = {"/"})
     public String welcome() {
         return "Welcome to the razor pay payment gateway";
     }
 
-    @Override
+    @GetMapping("test")
     public String test() {
         return "This is the test method" ;
     }
 
+    @GetMapping("/get-all-payment")
+    public String getAllPayments() {
+        String response = razorPayService.getAllPaymentsInfo() ;
+        return response;
+    }
 
+    @PostMapping("/make-payment")
+    public String makePayment(@RequestBody APICommonRequest apiCommonRequest) {
+        String response = "" ;
+        try{
+             response = razorPayService.makePayment(apiCommonRequest) ;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return response;
+    }
 }
