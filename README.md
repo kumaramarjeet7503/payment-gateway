@@ -27,11 +27,15 @@ Access the Swagger documentation here:
 - **Endpoint**: `/api/payment/makePayment`
 - **Method**: `POST`
 - **Description**: Initiates a payment transaction.
-- **Request Body**:
-  ```json
-  {
-    "amount": 1000,
-    "currency": "INR",
-    "receipt": "receipt#1",
-    "payment_capture": 1
-  }
+-- **Curl**: ```curl -i -X POST \
+   -H "Content-Type:application/json" \
+   -d \
+'{
+  "amount": 105,
+  "referenceId": "TXN00000001",
+  "description": "Payment for policy",
+  "name": "Amarjeet",
+  "contact": "9948813284",
+  "email": "amarjeet@gmail.com"
+}' \
+ 'http://localhost:8080/razorpay-service/api/make-payment'```
