@@ -1,16 +1,16 @@
 package com.example.razorpay_pg.controller;
 
 import com.example.razorpay_pg.dto.APICommonRequest;
-import com.example.razorpay_pg.service.RazorPayService;
+import com.example.razorpay_pg.service.RazorpayService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-public class RazorPayController {
+public class RazorpayController {
 
-    private final RazorPayService razorPayService;
+    private final RazorpayService razorPayService;
 
-    RazorPayController(RazorPayService razorPayService) {
+    RazorpayController(RazorpayService razorPayService) {
         this.razorPayService = razorPayService;
     }
 
@@ -35,6 +35,7 @@ public class RazorPayController {
         String response = "" ;
         try{
              response = razorPayService.makePayment(apiCommonRequest) ;
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

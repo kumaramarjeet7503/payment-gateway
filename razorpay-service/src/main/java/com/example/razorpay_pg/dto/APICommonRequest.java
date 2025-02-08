@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @ToString
 public class APICommonRequest {
 
-    private Integer amount;
+    private Double amount;
     private String currency ;
     private String referenceId;
     private String description;

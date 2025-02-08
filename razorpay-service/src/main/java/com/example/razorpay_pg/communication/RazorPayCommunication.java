@@ -14,13 +14,13 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Base64;
 
 @Component
-public class RazorPayCommunication {
+public class RazorpayCommunication {
 
     public final RestTemplate restTemplate;
-    public final Logger logger = LoggerFactory.getLogger(RazorPayCommunication.class);
+    public final Logger logger = LoggerFactory.getLogger(RazorpayCommunication.class);
 
     @Autowired
-    public RazorPayCommunication(RestTemplate restTemplate){
+    public RazorpayCommunication(RestTemplate restTemplate){
         this.restTemplate = restTemplate;
     }
 
@@ -44,7 +44,7 @@ public class RazorPayCommunication {
             headers.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-            logger.info("Response: " + response.getBody());
+            logger.info("Response: {}", response.getBody());
             apiResponse = response.getBody();
         }catch (HttpClientErrorException | HttpServerErrorException e) {
             // Handle HTTP error responses
